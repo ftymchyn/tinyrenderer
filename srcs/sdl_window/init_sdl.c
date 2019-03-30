@@ -25,7 +25,7 @@ static void	init_canvas(t_sdl *sdl)
 {
 	sdl->canvas = SDL_CreateTexture(
 		sdl->renderer,
-		SDL_PIXELFORMAT_ARGB8888,
+		SDL_PIXELFORMAT_ABGR8888,
 		SDL_TEXTUREACCESS_TARGET,
 		sdl->width,
 		sdl->height);

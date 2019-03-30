@@ -1,6 +1,14 @@
 #ifndef TYPEDEFS_H
 # define TYPEDEFS_H
 
+typedef unsigned char	t_byte4 __attribute__((ext_vector_type(4)));
+
+typedef union			u_color
+{
+	t_byte4				bytes;
+	int					rgba;
+}						t_color;
+
 typedef enum			e_bool
 {
 	FALSE,

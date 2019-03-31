@@ -28,7 +28,10 @@ void			program_loop(t_sdl *sdl)
 
 		if (running)
 		{
-			draw_frame(sdl);
+			SDL_UpdateTexture(sdl->canvas, NULL, sdl->pixels, sdl->width << 2);
+			SDL_RenderClear(sdl->renderer);
+			SDL_RenderCopy(sdl->renderer, sdl->canvas, NULL, NULL);
+			SDL_RenderPresent(sdl->renderer);
 		}
 	}
 }

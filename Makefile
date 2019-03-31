@@ -1,5 +1,4 @@
 NAME        = tinyrenderer
-OS          = $(shell uname)
 CC          = clang
 CFLAGS      = -Wall -Wextra -Werror -O3
 
@@ -10,11 +9,11 @@ HEADERS_DIR = ./includes
 HEADERS     = tinyrenderer.h typedefs.h
 HEADERS    := $(addprefix $(HEADERS_DIR)/, $(HEADERS))
 
-SRCS        = main.c init_sdl.c draw_frame.c program_loop.c clear_sdl.c
+SRCS        = main.c init_sdl.c program_loop.c clear_sdl.c
 
 OBJS        = $(SRCS:.c=.o)
 
-ifneq ($(OS), Linux)
+ifneq ($(shell uname), Linux)
 INCLUDES    = -I ./includes
 INCLUDES   += -I /Library/Frameworks/SDL2.framework/Headers
 LIBRARIES   = -L. /Library/Frameworks/SDL2.framework/SDL2

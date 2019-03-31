@@ -28,6 +28,9 @@ TO_LINKING  = $(addprefix $(OBJS_DIR)/, $(OBJS)) $(INCLUDES) $(LIBRARIES)
 VPATH       = $(SRCS_DIR) $(OBJS_DIR) $(SRCS_DIR)/sdl_window
 
 
+.PHONY: all clean fclean re
+
+
 all         : $(NAME)
 
 $(NAME)     : $(OBJS_DIR) $(OBJS) $(HEADERS)

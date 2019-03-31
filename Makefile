@@ -25,7 +25,8 @@ endif
 
 TO_LINKING  = $(addprefix $(OBJS_DIR)/, $(OBJS)) $(INCLUDES) $(LIBRARIES)
 
-VPATH       = $(SRCS_DIR) $(OBJS_DIR) $(SRCS_DIR)/sdl_window
+SRCS_SUBDIR = sdl_window render
+VPATH       = $(SRCS_DIR) $(addprefix $(SRCS_DIR)/, $(SRCS_SUBDIR)) $(OBJS_DIR)
 
 
 .PHONY: all clean fclean re

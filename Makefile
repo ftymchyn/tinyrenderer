@@ -10,6 +10,7 @@ HEADERS     = tinyrenderer.h typedefs.h
 HEADERS    := $(addprefix $(HEADERS_DIR)/, $(HEADERS))
 
 SRCS        = main.c init_sdl.c program_loop.c clear_sdl.c
+SRCS       += draw_line.c abs.c clamp.c swap.c
 
 OBJS        = $(SRCS:.c=.o)
 
@@ -25,7 +26,7 @@ endif
 
 TO_LINKING  = $(addprefix $(OBJS_DIR)/, $(OBJS)) $(INCLUDES) $(LIBRARIES)
 
-SRCS_SUBDIR = sdl_window render
+SRCS_SUBDIR = sdl_window render utils math
 VPATH       = $(SRCS_DIR) $(addprefix $(SRCS_DIR)/, $(SRCS_SUBDIR)) $(OBJS_DIR)
 
 

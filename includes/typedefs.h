@@ -7,8 +7,8 @@ typedef int				t_int2 __attribute__((ext_vector_type(2)));
 
 typedef union			u_color
 {
-	t_byte4				bytes;
 	int					rgba;
+	t_byte4				bytes;
 }						t_color;
 
 typedef enum			e_bool

@@ -12,6 +12,7 @@ void	program_loop(t_sdl *sdl);
 void	draw_frame(t_sdl *sdl);
 void	clear_sdl(t_sdl *sdl);
 
+void	set_pixel_color(t_sdl *sdl, int x, int y, int c);
 void	draw_line(t_sdl *sdl, t_int2 pStart, t_int2 pEnd, t_color color);
 
 int		clampi(int num, int min, int max);

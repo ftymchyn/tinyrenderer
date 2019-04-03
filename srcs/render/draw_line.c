@@ -46,6 +46,6 @@ void		draw_line(t_sdl *sdl, t_int2 pStart, t_int2 pEnd, t_color color)
 		t = (pMid.x - pStart.x) / (float)(pEnd.x - pStart.x);
 		pMid.y = pStart.y * (1.0f - t) + pEnd.y * t;
 
-		sdl->pixels[(sdl->height - *y) * sdl->width + *x] = color.rgba;
+		set_pixel_color(sdl, *x, *y, color.rgba);
 	}
 }

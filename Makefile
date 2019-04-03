@@ -10,7 +10,7 @@ HEADERS     = tinyrenderer.h typedefs.h
 HEADERS    := $(addprefix $(HEADERS_DIR)/, $(HEADERS))
 
 SRCS        = main.c init_sdl.c program_loop.c clear_sdl.c
-SRCS       += draw_line.c abs.c clamp.c swap.c
+SRCS       += set_pixel_color.c draw_line.c abs.c clamp.c swap.c
 
 OBJS        = $(SRCS:.c=.o)
 

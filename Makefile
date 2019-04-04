@@ -25,7 +25,7 @@ LIBRARIES   = -L. /Library/Frameworks/SDL2.framework/SDL2
 else
 INCLUDES    = -I ./includes -I $(LIBFT_INCL)
 INCLUDES   += -I /usr/include/SDL2/
-LIBRARIES   = -lSDL2 -L $(LIBFT)
+LIBRARIES   = -lSDL2 -L. $(LIBFT)
 endif
 
 TO_LINKING  = $(addprefix $(OBJS_DIR)/, $(OBJS)) $(INCLUDES) $(LIBRARIES)

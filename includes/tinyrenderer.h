@@ -2,6 +2,7 @@
 # define TINYRENDERER_H
 
 # include <assert.h>
+# include "libft.h" 
 # include "SDL.h"
 # include "typedefs.h"
 

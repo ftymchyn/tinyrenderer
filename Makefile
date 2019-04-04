@@ -2,6 +2,10 @@ NAME        = tinyrenderer
 CC          = clang
 CFLAGS      = -Wall -Wextra -Werror -O3
 
+LIBFT_DIR   = ./libft
+LIBFT_INCL  = $(LIBFT_DIR)/includes/
+LIBFT       = $(LIBFT_DIR)/libft.a
+
 SRCS_DIR    = ./srcs
 OBJS_DIR    = ./objs
 HEADERS_DIR = ./includes
@@ -15,13 +19,13 @@ SRCS       += set_pixel_color.c draw_line.c abs.c clamp.c swap.c
 OBJS        = $(SRCS:.c=.o)
 
 ifneq ($(shell uname), Linux)
-INCLUDES    = -I ./includes
+INCLUDES    = -I ./includes -I $(LIBFT_INCL)
 INCLUDES   += -I /Library/Frameworks/SDL2.framework/Headers
 LIBRARIES   = -L. /Library/Frameworks/SDL2.framework/SDL2
 else
-INCLUDES    = -I ./includes
+INCLUDES    = -I ./includes -I $(LIBFT_INCL)
 INCLUDES   += -I /usr/include/SDL2/
-LIBRARIES   = -lSDL2
+LIBRARIES   = -lSDL2 -L $(LIBFT)
 endif
 
 TO_LINKING  = $(addprefix $(OBJS_DIR)/, $(OBJS)) $(INCLUDES) $(LIBRARIES)
@@ -35,9 +39,12 @@ VPATH       = $(SRCS_DIR) $(addprefix $(SRCS_DIR)/, $(SRCS_SUBDIR)) $(OBJS_DIR)
 
 all         : $(NAME)
 
-$(NAME)     : $(OBJS_DIR) $(OBJS) $(HEADERS)
+$(NAME)     : $(LIBFT) $(OBJS_DIR) $(OBJS) $(HEADERS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(TO_LINKING)
 	@printf "\n\e[38;5;46m%-40s SUCCESSFUL BUILD 🖥\e[0m\n" ./$(NAME)
+
+$(LIBFT)    :
+	make -C $(LIBFT_DIR)
 
 $(OBJS_DIR) :
 	mkdir $(OBJS_DIR)
@@ -50,6 +57,7 @@ clean       :
 	rm -rf $(OBJS_DIR)
 
 fclean      : clean
+	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re          : fclean all

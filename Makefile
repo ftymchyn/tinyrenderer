@@ -44,7 +44,7 @@ $(NAME)     : $(LIBFT) $(OBJS_DIR) $(OBJS) $(HEADERS)
 	@printf "\n\e[38;5;46m%-40s SUCCESSFUL BUILD 🖥\e[0m\n" ./$(NAME)
 
 $(LIBFT)    :
-	make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR) -j 4
 
 $(OBJS_DIR) :
 	mkdir $(OBJS_DIR)

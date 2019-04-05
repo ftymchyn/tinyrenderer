@@ -1,6 +1,6 @@
 NAME        = tinyrenderer
 CC          = clang
-CFLAGS      = -Wall -Wextra -Werror -O3
+CFLAGS      = -Wall -Wextra -Werror -O3 -fsanitize=address
 
 LIBFT_DIR   = ./libft
 LIBFT_INCL  = $(LIBFT_DIR)/includes/

@@ -7,7 +7,8 @@ static t_bool	pull_event(SDL_Event *e)
 	while (!result && SDL_PollEvent(e))
 	{
 		result = (e->type == SDL_QUIT
-				  || (e->type == SDL_KEYDOWN && !e->key.repeat));
+				  || (e->type == SDL_KEYDOWN && !e->key.repeat)
+				  || e->type == SDL_DROPFILE);
 	}
 
 	return (result);
@@ -22,7 +23,28 @@ void			program_loop(t_sdl *sdl)
 	{
 		if (pull_event(&e))
 		{
-			running = !(e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE);
+			if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
+			{
+				running = FALSE;
+			}
+			else if (e.type == SDL_DROPFILE)
+			{
+				int fd = open(e.drop.file, O_RDONLY);
+				ft_putendl(e.drop.file != NULL ? e.drop.file : "(null)");
+				if ( fd != -1 )
+				{
+					char *line = NULL;
+
+					while (get_next_line(fd, &line) > 0)
+					{
+						ft_putendl(line);
+						free(line);
+					}
+				}
+				SDL_free(e.drop.file);
+
+				e.type = 0;
+			}
 		}
 
 		if (running)

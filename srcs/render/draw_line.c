@@ -33,10 +33,10 @@ void		draw_line(t_sdl *sdl, t_int2 pStart, t_int2 pEnd, t_color color)
 
 	clamp_point(sdl, &pStart);
 	clamp_point(sdl, &pEnd);
+
 	if (switch_points_by_checking_deltas( &pStart, &pEnd ))
 	{
-		x = ((int*)&pMid) + 1;
-		y = (int*)&pMid;
+		swapull((unsigned long long*)&x, (unsigned long long*)&y);
 	}
 
 	t_int2	delta = (t_int2){pEnd.x - pStart.x, pEnd.y - pStart.y};

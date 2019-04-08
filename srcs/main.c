@@ -1,4 +1,4 @@
-#include "tinyrenderer.h"
+#include "sdl_window.h"
 
 int	main(void)
 {

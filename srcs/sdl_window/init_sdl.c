@@ -1,9 +1,9 @@
-#include "tinyrenderer.h"
+#include "sdl_window.h"
 
 static void	init_window(t_sdl *sdl)
 {
 	sdl->window = SDL_CreateWindow(
-		PROGRAM_NAME,
+		WINDOW_NAME,
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		sdl->width,

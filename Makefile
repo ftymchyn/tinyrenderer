@@ -10,7 +10,7 @@ SRCS_DIR    = ./srcs
 OBJS_DIR    = ./objs
 HEADERS_DIR = ./includes
 
-HEADERS     = tinyrenderer.h typedefs.h
+HEADERS     = common.h sdl_window.h render.h math.h utils.h
 HEADERS    := $(addprefix $(HEADERS_DIR)/, $(HEADERS))
 
 SRCS        = main.c init_sdl.c program_loop.c clear_sdl.c
@@ -49,7 +49,7 @@ $(LIBFT)    :
 $(OBJS_DIR) :
 	mkdir $(OBJS_DIR)
 
-$(OBJS)     : %.o : %.c $(HEADERS)
+$(OBJS)     : %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $(OBJS_DIR)/$@ $(INCLUDES)
 	@printf "%-40s \e[38;5;49mcompiled\e[0m\n" $<
 

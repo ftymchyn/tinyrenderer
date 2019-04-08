@@ -1,4 +1,4 @@
-#include "tinyrenderer.h"
+#include "sdl_window.h"
 
 void	clear_sdl(t_sdl *sdl)
 {

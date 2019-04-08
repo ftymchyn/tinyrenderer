@@ -1,4 +1,4 @@
-#include "tinyrenderer.h"
+#include "render.h"
 
 static void	clamp_point(t_sdl *sdl, t_int2 *point)
 {

@@ -1,4 +1,6 @@
-#include "tinyrenderer.h"
+#include "sdl_window.h"
+#include "render.h"
+#include "libft.h"
 
 static t_bool	pull_event(SDL_Event *e)
 {

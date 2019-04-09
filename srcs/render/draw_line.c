@@ -36,7 +36,7 @@ void		draw_line(t_sdl *sdl, t_int2 pStart, t_int2 pEnd, t_color color)
 
 	if (switch_points_by_checking_deltas( &pStart, &pEnd ))
 	{
-		swapull((unsigned long long*)&x, (unsigned long long*)&y);
+		swaps((size_t*)&x, (size_t*)&y);
 	}
 
 	t_int2	delta = (t_int2){pEnd.x - pStart.x, pEnd.y - pStart.y};

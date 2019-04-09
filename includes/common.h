@@ -2,6 +2,7 @@
 # define COMMON_H
 
 # include <assert.h>
+# include <string.h>
 
 typedef unsigned char	t_byte4 __attribute__((ext_vector_type(4)));
 typedef float			t_float4 __attribute__((ext_vector_type(4)));

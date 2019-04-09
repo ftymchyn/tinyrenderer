@@ -1,3 +1,5 @@
+#include "common.h"
+
 void	swapi(int *n1, int *n2)
 {
 	if (n1 && n2)
@@ -8,7 +10,7 @@ void	swapi(int *n1, int *n2)
 	}
 }
 
-void	swapull(unsigned long long *n1, unsigned long long *n2)
+void	swaps(size_t *n1, size_t *n2)
 {
 	if (n1 && n2)
 	{

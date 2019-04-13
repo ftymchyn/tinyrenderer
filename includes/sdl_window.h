@@ -16,8 +16,10 @@ typedef struct		s_sdl
 	int				*pixels;
 }					t_sdl;
 
-void				init_sdl(t_sdl *sdl, int width, int height);
-void				program_loop(t_sdl *sdl);
-void				clear_sdl(t_sdl *sdl);
+t_sdl				*get_sdl_context(void);
+void				init_sdl(int width, int height);
+void				program_loop(void);
+void				render_canvas(void);
+void				clear_sdl(void);
 
 #endif

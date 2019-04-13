@@ -2,11 +2,9 @@
 
 int	main(void)
 {
-	t_sdl sdl;
-
-	init_sdl(&sdl, 1152, 864);
-	program_loop(&sdl);
-	clear_sdl(&sdl);
+	init_sdl(1152, 864);
+	program_loop();
+	clear_sdl();
 
 	return (0);
 }

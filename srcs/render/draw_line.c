@@ -1,7 +1,10 @@
 #include "render.h"
 
-static void	clamp_point(t_sdl *sdl, t_int2 *point)
+static void	clamp_point(t_int2 *point)
 {
+	t_sdl	*sdl;
+
+	sdl = get_sdl_context();
 	point->x = clampi(point->x, 0, sdl->width - 1);
 	point->y = clampi(point->y, 0, sdl->height - 1);
 }
@@ -25,14 +28,14 @@ static t_bool	switch_points_by_checking_deltas(t_int2 *pStart, t_int2 *pEnd)
 	return (result);
 }
 
-void		draw_line(t_sdl *sdl, t_int2 pStart, t_int2 pEnd, t_color color)
+void		draw_line(t_int2 pStart, t_int2 pEnd, t_color color)
 {
 	t_int2	pMid;
 	int		*x = (int*)&pMid;
 	int		*y = ((int*)&pMid) + 1;
 
-	clamp_point(sdl, &pStart);
-	clamp_point(sdl, &pEnd);
+	clamp_point(&pStart);
+	clamp_point(&pEnd);
 
 	if (switch_points_by_checking_deltas( &pStart, &pEnd ))
 	{
@@ -44,7 +47,7 @@ void		draw_line(t_sdl *sdl, t_int2 pStart, t_int2 pEnd, t_color color)
 	int		yAccum = 0;
 	for(pMid = pStart; pMid.x < pEnd.x; pMid.x++)
 	{
-		set_pixel_color(sdl, *x, *y, color.rgba);
+		set_pixel_color(*x, *y, color.rgba);
 
 		yAccum += yStep;
 		if (yAccum > delta.x)

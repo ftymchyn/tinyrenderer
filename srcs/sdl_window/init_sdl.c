@@ -32,13 +32,16 @@ static void	init_canvas(t_sdl *sdl)
 	assert(sdl->canvas);
 }
 
-void		init_sdl(t_sdl *sdl, int width, int height)
+void		init_sdl(int width, int height)
 {
-	int init_result = SDL_Init(SDL_INIT_VIDEO);
-	assert( init_result == 0 );
-	
+	t_sdl	*sdl;
+
+	sdl = get_sdl_context();
 	sdl->width = width;
 	sdl->height = height;
+
+	int init_result = SDL_Init(SDL_INIT_VIDEO);
+	assert( init_result == 0 );
 
 	init_window(sdl);
 	init_renderer(sdl);

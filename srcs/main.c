@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	init_sdl(1152, 864);
+	init_sdl(900, 900);
 	program_loop();
 	clear_sdl();
 

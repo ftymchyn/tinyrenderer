@@ -15,10 +15,10 @@ static t_bool	pull_event(SDL_Event *e)
 
 	return (result);
 }
-
 void			program_loop(void)
 {
 	t_bool		running = TRUE;
+	t_mesh		*mesh = NULL;
 	SDL_Event	e;
 	
 	while (running)
@@ -29,18 +29,22 @@ void			program_loop(void)
 			{
 				running = FALSE;
 			}
+			else if (e.type == SDL_DROPFILE)
+			{
+				clear_mesh(&mesh);
+				mesh = load_mesh(e.drop.file);
+				SDL_free(e.drop.file);
+			}
 		}
 
 		if (running)
 		{
-			draw_line((t_int2){150,150}, (t_int2){1200,540}, (t_color){0x00ffffff});
-			draw_line((t_int2){150,150}, (t_int2){200,120}, (t_color){0x000000ff});
-			draw_line((t_int2){150,150}, (t_int2){50, 30}, (t_color){0x000000ff});
-			draw_line((t_int2){150,150}, (t_int2){150,850}, (t_color){0x0000ffff});
-
-			render_canvas();
+			render(mesh);
+			update_window();
 		}
 
 		SDL_Delay(0);
 	}
+
+	clear_mesh(&mesh);
 }

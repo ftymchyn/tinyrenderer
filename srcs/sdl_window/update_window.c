@@ -1,6 +1,6 @@
 #include "sdl_window.h"
 
-void	render_canvas(void)
+void	update_window(void)
 {
 	t_sdl	*sdl;
 

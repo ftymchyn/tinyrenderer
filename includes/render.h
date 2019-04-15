@@ -16,6 +16,7 @@ typedef union	u_color
 void			set_pixel_color(int x, int y, int c);
 void			draw_line(t_int2 pStart, t_int2 pEnd, t_color color);
 void			draw_face(t_face *face);
+void			draw_triangle(t_int2 *points, t_color c);
 void			render(t_mesh *mesh);
 
 #endif

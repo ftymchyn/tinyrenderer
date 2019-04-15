@@ -1,15 +1,4 @@
 #include "render.h"
-#include <stdio.h>
-
-static void	draw_triangle(t_int2 *points)
-{
-	t_color	c;
-
-	c.rgba = rand();
-	draw_line(points[0], points[1], c);
-	draw_line(points[1], points[2], c);
-	draw_line(points[2], points[0], c);
-}
 
 t_int2		transform(t_face *face, size_t vindex)
 {
@@ -40,7 +29,7 @@ void		draw_face(t_face *face)
 		{
 			screen_coords[1] = transform(face, i);
 			screen_coords[2] = transform(face, i + 1);
-			draw_triangle(screen_coords);
+			draw_triangle(screen_coords, (t_color){rand()});
 			i++;
 		}
 	}

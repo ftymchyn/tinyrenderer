@@ -15,7 +15,7 @@ HEADERS    := $(addprefix $(HEADERS_DIR)/, $(HEADERS))
 
 SRCS        = main.c get_sdl_context.c init_sdl.c program_loop.c clear_sdl.c
 SRCS       += update_window.c set_pixel_color.c draw_line.c abs.c clamp.c swap.c
-SRCS       += load_mesh.c clear_mesh.c render.c draw_face.c
+SRCS       += load_mesh.c clear_mesh.c render.c draw_face.c draw_triangle.c
 
 OBJS        = $(SRCS:.c=.o)
 

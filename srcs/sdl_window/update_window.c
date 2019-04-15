@@ -9,4 +9,5 @@ void	update_window(void)
 	SDL_RenderClear(sdl->renderer);
 	SDL_RenderCopy(sdl->renderer, sdl->canvas, NULL, NULL);
 	SDL_RenderPresent(sdl->renderer);
+	bzero(sdl->pixels, sizeof(int) * ((sdl->width * sdl->height)));
 }

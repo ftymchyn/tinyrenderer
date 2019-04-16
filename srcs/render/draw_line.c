@@ -1,14 +1,5 @@
 #include "render.h"
 
-static void	clamp_point(t_int2 *point)
-{
-	t_sdl	*sdl;
-
-	sdl = get_sdl_context();
-	point->x = clampi(point->x, 0, sdl->width - 1);
-	point->y = clampi(point->y, 0, sdl->height - 1);
-}
-
 static t_bool	switch_points_by_checking_deltas(t_int2 *pStart, t_int2 *pEnd)
 {
 	t_bool	result = (absi(pStart->x - pEnd->x) < absi(pStart->y - pEnd->y));
@@ -34,8 +25,8 @@ void		draw_line(t_int2 pStart, t_int2 pEnd, t_color color)
 	int		*x = (int*)&pMid;
 	int		*y = ((int*)&pMid) + 1;
 
-	clamp_point(&pStart);
-	clamp_point(&pEnd);
+	clamp_screen_coord(&pStart);
+	clamp_screen_coord(&pEnd);
 
 	if (switch_points_by_checking_deltas( &pStart, &pEnd ))
 	{

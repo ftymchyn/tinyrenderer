@@ -63,7 +63,7 @@ static void		parse_obj_line(const char *line, t_mesh *mesh)
 		if (ft_strequ(line_type, "v"))
 		{
 			coord = parse_coord(line_split);
-			vector_pushback(mesh->vertexes, &coord);
+			vector_pushback(mesh->v, &coord);
 		}
 		else if (ft_strequ(line_type, "f"))
 		{
@@ -85,7 +85,7 @@ t_mesh			*load_mesh(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if ( fd != -1 && result)
 	{
-		result->vertexes = vector_create(sizeof(t_float3));
+		result->v = vector_create(sizeof(t_float3));
 		result->faces = vector_create(sizeof(t_face));
 		while (get_next_line(fd, &line) > 0)
 		{

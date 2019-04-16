@@ -6,12 +6,14 @@
 
 /**
  * Mesh data :
- *  "*vertexes" is dynamic t_float3[]  (*.obj line "v 0.5 0.5 0.5")
- *  "*faces"    is dynamic t_face[]    (*.obj line "f 1/1/1 2/2/2 3/3/3")
+ *  "*v"     is dynamic t_float3[]  (*.obj line "v 0.5 0.5 0.5")
+ *  "*vn"    is dynamic t_float3[]  (*.obj line "vn 0.5 0.5 0.5")
+ *  "*faces" is dynamic t_face[]    (*.obj line "f 1/1/1 2/2/2 3/3/3")
  */
 typedef struct	s_mesh
 {
-	t_vector	*vertexes;
+	t_vector	*v;
+	t_vector	*vn;
 	t_vector	*faces;
 }				t_mesh;
 

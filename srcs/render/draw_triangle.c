@@ -32,16 +32,16 @@ static t_bool	is_inside_triangle(int x, int y, t_int2 *pts)
 	return (bc.x >= 0.0f && bc.y >= 0.0f && bc.z >= 0.0f);
 }
 
-void			draw_triangle(t_int2 *points, t_color c)
+void			draw_triangle(t_rdata *rdata, t_color c)
 {
 	t_int2	bbox[2];
 
-	compute_triangle_bbox(bbox, points);
+	compute_triangle_bbox(bbox, rdata->v_screen);
 	for(int x = bbox[0].x; x <= bbox[1].x; x++)
 	{
 		for(int y = bbox[0].y; y <= bbox[1].y; y++)
 		{
-			if (is_inside_triangle(x, y, points))
+			if (is_inside_triangle(x, y, rdata->v_screen))
 			{
 				set_pixel_color(x, y, c.rgba);
 			}

@@ -1,35 +1,53 @@
 #include "render.h"
 
-t_int2		transform(t_face *face, size_t vindex)
+static void	push_vertex_to_render(t_face *face, size_t idx_in, t_rdata *rdata, size_t idx_out)
 {
-	t_int2			result;
-	const t_sdl		*sdl;
 	const t_int3	*vdata;
 	const t_float3	*v;
+	const t_float3	*vn;
 
-	sdl = get_sdl_context();
-	vdata = vector_at(face->vdata, vindex);
-	v = vector_at(face->owner->vertexes, vdata->x - 1);
-	result = (t_int2){(v->x + 1.0f) * sdl->width / 2.0f, (v->y + 1.0f) * sdl->height / 2.0f };
-	return (result);
+	vdata = vector_at(face->vdata, idx_in);
+	v =  vector_at(face->owner->v, vdata->x - 1);
+	vn = vector_at(face->owner->vn, vdata->x - 1);
+	rdata->v[idx_out] = (v ? *v : (t_float3){0.0f, 0.0f, 0.0f});
+	rdata->vn[idx_out] = (vn ? *vn : (t_float3){0.0f, 0.0f, 0.0f});
 }
 
-void		draw_face(t_face *face)
+static void	transform(t_rdata *rd)
 {
-	t_int2		screen_coords[3];
+	const t_sdl		*sdl;
+	t_float3		tmp;
+	float			half_w;
+	float			half_h;
+
+	sdl = get_sdl_context();
+	half_w = sdl->width / 2.0f;
+	half_h = sdl->height / 2.0f;
+	for(int i = 0; i < 3; i++)
+	{
+		tmp = rd->v[i] + 1.0f;
+		rd->v_screen[i] = (t_int2){tmp.x * half_w, tmp.y *  half_h};
+	}
+}
+
+void			draw_face(t_face *face)
+{
+	t_rdata		*rdata;
 	size_t		vsize;
 	size_t		i;
 
 	vsize = vector_size(face->vdata);
 	if (face && vsize >= 3)
 	{
-		screen_coords[0] = transform(face, 0);
+		rdata = get_render_context();
+		push_vertex_to_render(face, 0, rdata, 0);
 		i = 1;
 		while (i < vsize - 1)
 		{
-			screen_coords[1] = transform(face, i);
-			screen_coords[2] = transform(face, i + 1);
-			draw_triangle(screen_coords, (t_color){rand()});
+			push_vertex_to_render(face, i, rdata, 1);
+			push_vertex_to_render(face, i + 1, rdata, 2);
+			transform(rdata);
+			draw_triangle(rdata, (t_color){rand()});
 			i++;
 		}
 	}

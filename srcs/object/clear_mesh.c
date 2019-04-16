@@ -17,6 +17,7 @@ void		clear_mesh(t_mesh **mesh)
 	{
 		vector_clear(&((*mesh)->faces), &clear_face);
 		vector_clear(&((*mesh)->v), NULL);
+		vector_clear(&((*mesh)->vn), NULL);
 		ft_memdel((void**)mesh);
 	}
 }

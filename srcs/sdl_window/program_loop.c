@@ -7,7 +7,7 @@ static void		init_render_context()
 	t_rdata	*rdata;
 
 	rdata = get_render_context();
-	rdata->light_dir = (t_float3){0.0f, 0.0f, -1.0f};
+	rdata->screen_dir = norm3f((t_float3){0.0f, 0.0f, 1.0f});
 }
 
 static t_bool	pull_event(SDL_Event *e)

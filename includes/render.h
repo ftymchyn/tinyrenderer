@@ -3,16 +3,18 @@
 
 # include "common.h"
 # include "sdl_window.h"
-# include "math.h"
+# include "tmath.h"
 # include "utils.h"
 # include "object.h"
 
 typedef struct	s_rdata
 {
+	t_float3	screen_dir;
 	t_float3	light_dir;
 	t_float3	v[3];
 	t_float3	vn[3];
 	t_int2		v_screen[3];
+	t_float3	bc_screen[3];
 }				t_rdata;
 
 

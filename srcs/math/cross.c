@@ -1,4 +1,4 @@
-#include "math.h"
+#include "tmath.h"
 
 t_float3	cross3f(t_float3 v1, t_float3 v2)
 {

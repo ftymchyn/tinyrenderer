@@ -10,13 +10,13 @@ SRCS_DIR    = ./srcs
 OBJS_DIR    = ./objs
 HEADERS_DIR = ./includes
 
-HEADERS     = common.h sdl_window.h render.h math.h utils.h object.h
+HEADERS     = common.h sdl_window.h render.h tmath.h utils.h object.h
 HEADERS    := $(addprefix $(HEADERS_DIR)/, $(HEADERS))
 
 SRCS        = main.c get_sdl_context.c init_sdl.c program_loop.c clear_sdl.c
 SRCS       += update_window.c set_pixel_color.c draw_line.c abs.c clamp.c swap.c
 SRCS       += load_mesh.c clear_mesh.c render.c draw_face.c draw_triangle.c
-SRCS       += cross.c clamp_screen_coord.c get_render_context.c dot.c
+SRCS       += cross.c clamp_screen_coord.c get_render_context.c dot.c norm.c
 
 OBJS        = $(SRCS:.c=.o)
 

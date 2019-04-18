@@ -4,9 +4,13 @@
 
 static void		init_render_context()
 {
+	t_sdl	*sdl;
 	t_rdata	*rdata;
 
+	sdl = get_sdl_context();
 	rdata = get_render_context();
+	rdata->zbuffer = (float*)ft_memalloc(sizeof(float) * (sdl->width * sdl->height));
+	assert(rdata->zbuffer);
 	rdata->screen_dir = norm3f((t_float3){0.0f, 0.0f, 1.0f});
 }
 

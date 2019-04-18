@@ -16,7 +16,6 @@ static void	push_vertex_to_render(t_face *face, size_t idx_in, t_rdata *rdata, s
 static void	transform(t_rdata *rd)
 {
 	const t_sdl		*sdl;
-	t_float3		tmp;
 	float			half_w;
 	float			half_h;
 
@@ -25,8 +24,9 @@ static void	transform(t_rdata *rd)
 	half_h = sdl->height / 2.0f;
 	for(int i = 0; i < 3; i++)
 	{
-		tmp = rd->v[i] + 1.0f;
-		rd->v_screen[i] = (t_int2){tmp.x * half_w, tmp.y *  half_h};
+		rd->v_screen[i] = (t_float3){rd->v[i].x + 1.0f, rd->v[i].y + 1.0f, rd->v[i].z};
+		rd->v_screen[i] *= (t_float3){half_w, half_h, 1};
+		rd->v_screen[i].xy += 0.5f;
 	}
 }
 
@@ -36,7 +36,7 @@ void			draw_face(t_face *face)
 	t_float3	normal;
 	t_color		c;
 	size_t		i;
-	float		cosa;
+	float		intensity;
 
 	if (face && vector_size(face->vdata) >= 3)
 	{
@@ -48,11 +48,11 @@ void			draw_face(t_face *face)
 			push_vertex_to_render(face, i, rdata, 1);
 			push_vertex_to_render(face, i + 1, rdata, 2);
 			normal = norm3f(cross3f(rdata->v[1] - rdata->v[0], rdata->v[2] - rdata->v[0]));
-			cosa = dot3f(normal, rdata->screen_dir);
-			if (cosa > 0.0f)
+			intensity = dot3f(normal, rdata->screen_dir);
+			if (intensity > 0.0f)
 			{
 				transform(rdata);
-				c.bytes = (t_byte4)( cosa * 255);
+				c.bytes = (t_byte4)(intensity * 250);
 				draw_triangle(rdata, c);
 			}
 			i++;

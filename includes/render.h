@@ -7,14 +7,17 @@
 # include "utils.h"
 # include "object.h"
 
+# define FLOAT_MIN (3.402823466e+38f * -1.0f)
+
 typedef struct	s_rdata
 {
+	float		*zbuffer;
 	t_float3	screen_dir;
 	t_float3	light_dir;
 	t_float3	v[3];
 	t_float3	vn[3];
-	t_int2		v_screen[3];
-	t_float3	bc_screen[3];
+	t_float3	v_screen[3];
+	t_float3	bc_screen;
 }				t_rdata;
 
 

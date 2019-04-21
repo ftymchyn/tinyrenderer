@@ -34,7 +34,6 @@ void			draw_face(t_face *face)
 {
 	t_rdata		*rdata;
 	t_float3	normal;
-	t_color		c;
 	size_t		i;
 	float		intensity;
 
@@ -52,8 +51,7 @@ void			draw_face(t_face *face)
 			if (intensity > 0.0f)
 			{
 				transform(rdata);
-				c.bytes = (t_byte4)(intensity * 250);
-				draw_triangle(rdata, c);
+				draw_triangle(rdata);
 			}
 			i++;
 		}

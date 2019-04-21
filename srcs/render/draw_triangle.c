@@ -40,16 +40,13 @@ static t_bool	check_zbuffer(int x, int y, t_rdata *rdata)
 	t_bool		result;
 	const t_sdl	*sdl;
 	float		z;
-	int			i;
 
 	result = FALSE;
 	sdl = get_sdl_context();
-	z = FLOAT_MIN;
-	i = 0;
-	while (i < 3)
+	z = 0.0f;
+	for (int i = 0; i < 3; i++)
 	{
 		z += rdata->v_screen[i].z * rdata->bc_screen[i];
-		i++;
 	}
 	if (rdata->zbuffer[x + y * sdl->width] < z)
 	{
@@ -59,9 +56,12 @@ static t_bool	check_zbuffer(int x, int y, t_rdata *rdata)
 	return (result);
 }
 
-void			draw_triangle(t_rdata *rdata, t_color c)
+void			draw_triangle(t_rdata *rdata)
 {
-	t_int2	bbox[2];
+	t_int2		bbox[2];
+	t_float3	normal;
+	t_color		c;
+	float		intensity;
 
 	compute_triangle_bbox(bbox, rdata->v_screen);
 	for(int x = bbox[0].x; x <= bbox[1].x; x++)
@@ -70,6 +70,17 @@ void			draw_triangle(t_rdata *rdata, t_color c)
 		{
 			if (is_inside_triangle(x, y, rdata) && check_zbuffer(x, y, rdata))
 			{
+				normal = (t_float3)(0.0f);
+				for (int i = 0; i < 3; i++)
+				{
+					normal += rdata->vn[i] * rdata->bc_screen[i];
+				}
+				intensity = dot3f(norm3f(normal), rdata->screen_dir);
+				if (intensity < 0.0f)
+				{
+					intensity = 0.0f;
+				}
+				c.bytes =  (t_byte4)(intensity * 250);
 				set_pixel_color(x, y, c.rgba);
 			}
 		}
